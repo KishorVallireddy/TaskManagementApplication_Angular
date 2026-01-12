@@ -1,0 +1,20 @@
+<div class="task-filter">
+
+      <select
+        [(ngModel)]="status"
+        (change)="onStatusChange(status)">
+        <option value="All">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+      </select>
+
+      <select
+        [(ngModel)]="priority"
+        (change)="onPriorityChange(priority)">
+        <option value="All">All Priority</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+
+    </div>

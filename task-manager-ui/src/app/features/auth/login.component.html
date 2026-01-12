@@ -1,0 +1,8 @@
+<div class="auth-page">
+    <form class="auth-card" (ngSubmit)="submit()" #form="ngForm">
+      <input [(ngModel)]="username" name="username" placeholder="username" required/>
+      <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required/>
+      <button type="submit" [disabled]="form.invalid">Login</button>
+       <p><a href="/register">Create account</a></p>
+    </form>
+    </div>

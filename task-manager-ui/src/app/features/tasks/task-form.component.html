@@ -1,0 +1,64 @@
+<div class="task-form">
+
+      <p *ngIf="error" class="field-error">{{ error }}</p>
+
+      <!-- Title -->
+      <input
+        type="text"
+        placeholder="Task title"
+        name="title"
+        [(ngModel)]="title"
+        [class.invalid]="error && !title"
+      />
+
+      <!-- Description -->
+      <input
+        type="text"
+        placeholder="Task Description"
+        name="description"
+        [(ngModel)]="description"
+      />
+
+      <!-- Priority -->
+      <select
+        name="priority"
+        [(ngModel)]="priority">
+        <option value="" disabled>Select Priority</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+
+      <!-- Status -->
+      <div class="radio-group">
+        <label>
+          <input
+            type="radio"
+            name="status"
+            value="Pending"
+            [(ngModel)]="status"
+          />
+          Pending
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="status"
+            value="Completed"
+            [(ngModel)]="status"
+          />
+          Completed
+        </label>
+      </div>
+
+      <!-- Due Date -->
+      <input
+        type="date"
+        name="dueDate"
+        [(ngModel)]="dueDate"
+      />
+
+      <button (click)="handleSubmit()">Add Task</button>
+      
+    </div>

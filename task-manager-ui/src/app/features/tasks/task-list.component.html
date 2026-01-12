@@ -1,0 +1,137 @@
+<!-- LOADING -->
+    <div *ngIf="loading$ | async" class="task-list-center">
+      <p>Loading tasks...</p>
+    </div>
+
+    <!-- EMPTY -->
+    <div *ngIf="!(loading$ | async) && (tasks$ | async)?.length === 0" class="list-empty">
+      <p>No tasks found</p>
+    </div>
+
+    <!-- TABLE -->
+    <div
+      *ngIf="(tasks$ | async)?.length"
+      class="task-form"
+      style="max-width:900px"
+    >
+      <div class="table-wrapper">
+        <table class="task-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Due Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let task of tasks$ | async; let i = index">
+
+              <!-- EDIT MODE -->
+              <ng-container *ngIf="editIndex === i; else viewRow">
+                <td>
+                  <input
+                    [(ngModel)]="editTask.title"
+                  />
+                  <span *ngIf="submitted && !editTask.title" class="error">
+                    Title is required
+                  </span>
+                </td>
+
+                <td>
+                  <input
+                    [(ngModel)]="editTask.description"
+                  />
+                  <span *ngIf="submitted && !editTask.description" class="error">
+                    Description is required
+                  </span>
+                </td>
+
+                <td>
+                  <select [(ngModel)]="editTask.priority">
+                    <option value="">Select</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                  </select>
+                  <span *ngIf="submitted && !editTask.priority" class="error">
+                    Priority required
+                  </span>
+                </td>
+
+                <td>
+                  <select [(ngModel)]="editTask.status">
+                    <option value="">Select</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                  </select>
+                  <span *ngIf="submitted && !editTask.status" class="error">
+                    Status required
+                  </span>
+                </td>
+
+                <td>
+                  <input
+                    type="date"
+                    [(ngModel)]="editTask.dueDate"
+                  />
+                  <span *ngIf="submitted && !editTask.dueDate" class="error">
+                    Due date required
+                  </span>
+                </td>
+
+                <td class="action-buttons">
+                  <button
+                    class="save-btn"
+                    (click)="saveEdit()"
+                    [disabled]="!isValid()"
+                  >
+                    Save
+                  </button>
+                  <button class="cancel-btn" (click)="cancelEdit()">
+                    Cancel
+                  </button>
+                </td>
+              </ng-container>
+
+              <!-- VIEW MODE -->
+              <ng-template #viewRow>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>
+                  <span class="badge priority {{ task.priority.toLowerCase() }}">
+                    {{ task.priority }}
+                  </span>
+                </td>
+                <td>
+                  <span class="badge status {{ task.status.toLowerCase() }}">
+                    {{ task.status }}
+                  </span>
+                </td>
+                <td>
+                  {{ task.dueDate ? (task.dueDate | date:'yyyy-MM-dd') : '-' }}
+                </td>
+                <td class="action-buttons">
+                  <button class="edit-btn" (click)="startEdit(task, i)">
+                    Edit
+                  </button>
+
+                  <button
+                    class="delete-btn"
+                    [disabled]="!isAdmin"
+                    [title]="!isAdmin ? 'Only Admin can delete' : ''"
+                    (click)="deleteTask(task.id)"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </ng-template>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>

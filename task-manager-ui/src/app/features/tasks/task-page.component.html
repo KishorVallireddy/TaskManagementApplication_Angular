@@ -1,0 +1,38 @@
+<div class="task-page">
+
+      <div class="tab-bar">
+        <button
+          class="tab"
+          [class.active]="activeTab === 'create'"
+          (click)="setTab('create')">
+          Create Task
+        </button>
+
+        <button
+          class="tab"
+          [class.active]="activeTab === 'list'"
+          (click)="openListTab()">
+          Task List
+        </button>
+      </div>
+
+      <!-- FIXED CONTENT AREA -->
+      <div class="tab-body">
+
+        <app-task-form *ngIf="activeTab === 'create'"></app-task-form>
+
+        <ng-container *ngIf="activeTab === 'list'">
+          <app-task-filter
+            (apply)="applyFilter($event)">
+          </app-task-filter>
+
+          <app-task-list></app-task-list>
+        </ng-container>
+
+      </div>
+    </div>
+ <ng-container *ngIf="tasks$ | async as tasks">
+  <div *ngIf="!tasks?.length">
+  No tasks found
+</div>
+</ng-container>
