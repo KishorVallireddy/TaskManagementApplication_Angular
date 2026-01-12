@@ -1,3 +1,13 @@
+Project workflow screenshots for reference
+===============================================================================
+1)<img width="542" height="433" alt="image" src="https://github.com/user-attachments/assets/d37a338d-e85e-4202-9933-e53dc3443283" />
+2)<img width="542" height="487" alt="2 Register" src="https://github.com/user-attachments/assets/b9f7b300-1f4e-4fe6-8cef-e19fe1fd2497" />
+3)<img width="949" height="473" alt="3 CreateTask LogOut" src="https://github.com/user-attachments/assets/22bfcf56-9c24-4cab-9112-fee8dc32ce90" />
+4)<img width="901" height="476" alt="4 TaskList" src="https://github.com/user-attachments/assets/cc295b9c-8f26-4a34-aa12-02f84b026e2e" />
+5)<img width="887" height="338" alt="5 TaskEdit Filter" src="https://github.com/user-attachments/assets/5808a62f-f29b-4203-bd84-b1b18c093173" />
+6)<img width="946" height="419" alt="6 Validations" src="https://github.com/user-attachments/assets/593be869-a7a0-4fe7-a818-7ec4d8db74aa" />
+
+
 Project Folder Structure (Angular UI)
 =======================================
 TASK-MANAGER-UI-ANGULAR
