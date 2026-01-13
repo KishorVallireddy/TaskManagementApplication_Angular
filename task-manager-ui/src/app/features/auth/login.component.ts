@@ -18,7 +18,8 @@ export class LoginComponent {
     
   submit() {
     // const encryptedPassword = CryptoJS.SHA256(this.password).toString();
-     const encryptedPassword = btoa(this.password + ":" + Date.now())
+     let time= "1234567890";
+     const encryptedPassword = btoa(this.password + ":" + time)
     this.store.dispatch(login({ username: this.username, password: encryptedPassword }));
   }
 }
