@@ -46,7 +46,7 @@ registerSuccessAlert$ = createEffect(
     this.actions$.pipe(
       ofType(AuthActions.registerSuccess),
       tap(() => {
-          this.toastr.error("");
+          console.log("");
       })
     ),
   { dispatch: false }
