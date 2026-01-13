@@ -19,12 +19,10 @@ private toastr = inject(ToastrService);
   constructor(private store: Store) {}
 
   submit() {
-     const encryptedPassword = btoa(this.password + ":" + Date.now());
-     const encryptedconfirmPassword = btoa(this.confirmPassword + ":" + Date.now())
     this.store.dispatch(register({
       username: this.username,
-      password: encryptedPassword,
-      confirmPassword: encryptedconfirmPassword
+      password: this.password,
+      confirmPassword: this.confirmPassword
     }));
      this.toastr.error("Registration Sucessfully Completed.");
      this.username='';
